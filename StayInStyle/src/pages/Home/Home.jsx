@@ -3,6 +3,9 @@ import { Link } from "react-router-dom";
 import axios from "axios";
 import CustomCarousel from "../../components/CustomCarousel/CustomCarousel";
 import BuscadorProductos from "../../components/Buscador/BuscadorProductos";
+import logo from "../../assets/Imagenes/Stay_In_Style.png";
+import categoriaHombre from "../../assets/Imagenes/categoria hombres.jpeg";
+import categoriaMujer from "../../assets/Imagenes/categorias mujer.jpeg";
 import "./Home.css";
 
 const Home = () => {
@@ -10,7 +13,6 @@ const Home = () => {
   const [loading, setLoading] = useState(true);
   const [error, setError] = useState(null);
 
-  // Obtener URL correcta para la imagen del producto
   const getImageUrl = (imagenUrl) => {
     if (!imagenUrl) return null;
     if (imagenUrl.includes('res.cloudinary.com')) return imagenUrl;
@@ -20,7 +22,6 @@ const Home = () => {
     return imagenUrl;
   };
 
-  // Verificar disponibilidad
   const verificarDisponibilidad = async (productoId) => {
     try {
       const response = await axios.get(`https://backend-stay-in-style.onrender.com/productos/${productoId}`);
@@ -83,11 +84,11 @@ const Home = () => {
 
   return (
     <div style={{ backgroundColor: "#E5E1DA" }}>
-      {/* Header con logo que lleva a home */}
+      {/* Logo que lleva a Home */}
       <div className="header-logo-container">
         <Link to="/" className="logo-link">
           <img
-            src="/src/assets/Imagenes/Stay_In_Style.png"
+            src={logo}
             alt="Logo"
             className="logo-image"
           />
@@ -116,8 +117,7 @@ const Home = () => {
                 alt={producto.nombre}
                 onError={(e) => {
                   e.target.onerror = null;
-                  e.target.src =
-                    'https://via.placeholder.com/300?text=Imagen+no+disponible';
+                  e.target.src = 'https://via.placeholder.com/300?text=Imagen+no+disponible';
                   console.error(`Error cargando imagen del producto ${producto.id}:`, producto.imagen_url);
                 }}
                 style={{
@@ -136,7 +136,7 @@ const Home = () => {
         ))}
       </div>
 
-      {/* Carrusel de videos o testimonios */}
+      {/* Carrusel */}
       <div className="video-cards-container">
         <CustomCarousel />
       </div>
@@ -146,7 +146,7 @@ const Home = () => {
         <div className="card-container">
           <Link to="/Usuarios/Categorias/Categoriash" className="image-card hombres-card">
             <img
-              src="/src/assets/Imagenes/categoria hombres.jpeg"
+              src={categoriaHombre}
               alt="Hombres"
               className="image-card-img"
             />
@@ -157,7 +157,7 @@ const Home = () => {
         <div className="card-container">
           <Link to="/Usuarios/Categorias/Categoriasm" className="image-card mujeres-card">
             <img
-              src="/src/assets/Imagenes/categorias mujer.jpeg"
+              src={categoriaMujer}
               alt="Mujeres"
               className="image-card-img"
             />
