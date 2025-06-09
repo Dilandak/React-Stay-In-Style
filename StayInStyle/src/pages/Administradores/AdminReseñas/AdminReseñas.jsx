@@ -2,7 +2,7 @@ import React, { useState, useEffect } from "react";
 import AOS from "aos";
 import "aos/dist/aos.css";
 import { useNavigate } from "react-router-dom";
-import "./adminReseñas.css";
+import "./AdminReseñas.css";
 
 const AdminReseñas = () => {
     const [reseñas, setReseñas] = useState([]);
