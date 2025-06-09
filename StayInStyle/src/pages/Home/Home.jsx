@@ -88,7 +88,7 @@ const Home = () => {
       <div className="header-logo-container">
         <Link to="/" className="logo-link">
           <img
-            src={logo}
+            
             alt=""
             className=""
           />
