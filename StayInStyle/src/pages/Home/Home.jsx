@@ -86,7 +86,13 @@ const Home = () => {
     <div style={{ backgroundColor: "#E5E1DA" }}>
       {/* Logo que lleva a Home */}
       <div className="header-logo-container">
-        
+        <Link to="/" className="logo-link">
+          <img
+            src={logo}
+            alt=""
+            className=""
+          />
+        </Link>
       </div>
 
       {/* Buscador */}
