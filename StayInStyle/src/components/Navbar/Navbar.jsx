@@ -119,7 +119,9 @@ const Navbar = () => {
               <li><Link to="/Registro"><i className="fas fa-user-plus"></i> Registrarse</Link></li>
               <li><Link to="/Carrito"><i className="fas fa-shopping-cart"></i> Carrito</Link></li>
               <li>
-                <span><i className="fas fa-th-large"></i> Categorías</span>
+                <span className="texto-blanco">
+  <i className="fas fa-th-large"></i> Categorías
+</span>
                 <ul>
                   <li><Link to="/Usuarios/Categorias/Categoriash">Hombre</Link></li>
                   <li><Link to="/Usuarios/Categorias/Categoriasm">Mujer</Link></li>
