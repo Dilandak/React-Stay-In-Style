@@ -11,7 +11,7 @@ import Carrito from '../pages/Usuarios/Carrito/Carrito';
 import Categoriash from "../pages/Usuarios/Categorias/Categoriash/Categoriash";
 import Categoriasm from "../pages/Usuarios/Categorias/Categoriasm/Categoriasm";
 import AdminUsuarios from '../pages/Administradores/adminUsuarios/adminUsuarios';
-import AdminProductos from '../pages/Administradores/adminproductos/adminproductos';
+import AdminProductos from '../pages/Administradores/AdminProductos/AdminProductos';
 import AdminPedidos from '../pages/Administradores/AdminPedidos/AdminPedidos';
 import QueEsStayInStyle from "../pages/Usuarios/sobre_nosotros/QueEsStayInStyle";
 import QuienesSomos from "../pages/Usuarios/sobre_nosotros/QuienesSomos";
