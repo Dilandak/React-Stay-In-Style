@@ -10,22 +10,17 @@ const Home = () => {
   const [loading, setLoading] = useState(true);
   const [error, setError] = useState(null);
 
-  // Función para asegurar que la URL de la imagen es correcta
+  // Obtener URL correcta para la imagen del producto
   const getImageUrl = (imagenUrl) => {
     if (!imagenUrl) return null;
-    
-    if (imagenUrl.includes('res.cloudinary.com')) {
-      return imagenUrl;
-    }
-    
+    if (imagenUrl.includes('res.cloudinary.com')) return imagenUrl;
     if (!imagenUrl.startsWith('http')) {
       return `https://res.cloudinary.com/dodecmh9s/image/upload/${imagenUrl}`;
     }
-    
     return imagenUrl;
   };
 
-  // Función simplificada para verificar disponibilidad
+  // Verificar disponibilidad
   const verificarDisponibilidad = async (productoId) => {
     try {
       const response = await axios.get(`https://backend-stay-in-style.onrender.com/productos/${productoId}`);
@@ -39,29 +34,23 @@ const Home = () => {
   useEffect(() => {
     const cargarProductos = async () => {
       try {
-        // Cargar los 4 productos específicos
-        const productosIds = [1, 2, 3, 4];  
-        
-        // Obtener los datos básicos de los productos
-        const productosPromises = productosIds.map(id => 
+        const productosIds = [1, 2, 3, 4];
+        const productosPromises = productosIds.map(id =>
           axios.get(`https://backend-stay-in-style.onrender.com/productos/${id}`)
         );
-        
         const responses = await Promise.all(productosPromises);
-        
-        // Verificar disponibilidad para cada producto
-        const disponibilidadPromises = responses.map(res => 
+
+        const disponibilidadPromises = responses.map(res =>
           verificarDisponibilidad(res.data.id)
         );
         const disponibilidades = await Promise.all(disponibilidadPromises);
-        
-        // Combinar los datos
+
         const productosData = responses.map((res, index) => ({
           ...res.data,
           imagen_url: getImageUrl(res.data.imagen_url),
           disponible: disponibilidades[index]
         }));
-        
+
         setProductos(productosData);
       } catch (err) {
         console.error("Error al obtener productos:", err);
@@ -94,13 +83,18 @@ const Home = () => {
 
   return (
     <div style={{ backgroundColor: "#E5E1DA" }}>
-      {/* Header */}
+      {/* Header con logo que lleva a home */}
       <div className="header-logo-container">
-        <Link>
-          <img />
+        <Link to="/" className="logo-link">
+          <img
+            src="/src/assets/Imagenes/Stay_In_Style.png"
+            alt="Logo"
+            className="logo-image"
+          />
         </Link>
       </div>
 
+      {/* Buscador */}
       <div className="buscador-container-home">
         <BuscadorProductos />
       </div>
@@ -108,18 +102,22 @@ const Home = () => {
       {/* Vitrina de productos */}
       <div className="vitrina">
         {productos.map((producto) => (
-          <Link 
-            to={`/productos/${producto.id}`} 
-            key={producto.id} 
+          <Link
+            to={`/productos/${producto.id}`}
+            key={producto.id}
             className="producto-link"
           >
             <div className="producto">
-              <img 
-                src={producto.imagen_url || 'https://via.placeholder.com/300?text=Imagen+no+disponible'} 
-                alt={producto.nombre} 
+              <img
+                src={
+                  producto.imagen_url ||
+                  'https://via.placeholder.com/300?text=Imagen+no+disponible'
+                }
+                alt={producto.nombre}
                 onError={(e) => {
                   e.target.onerror = null;
-                  e.target.src = 'https://via.placeholder.com/300?text=Imagen+no+disponible';
+                  e.target.src =
+                    'https://via.placeholder.com/300?text=Imagen+no+disponible';
                   console.error(`Error cargando imagen del producto ${producto.id}:`, producto.imagen_url);
                 }}
                 style={{
@@ -130,8 +128,6 @@ const Home = () => {
               />
               <h3>{producto.nombre}</h3>
               <p>${producto.precio.toLocaleString('es-CO')} COP</p>
-              
-              {/* Mostrar solo Disponible o Agotado */}
               <span className={`estado-producto ${producto.disponible ? 'disponible' : 'agotado'}`}>
                 {producto.disponible ? 'Disponible' : 'Agotado'}
               </span>
@@ -140,12 +136,12 @@ const Home = () => {
         ))}
       </div>
 
-      {/* Carrusel */}
+      {/* Carrusel de videos o testimonios */}
       <div className="video-cards-container">
         <CustomCarousel />
       </div>
 
-      {/* Imágenes de Hombres y Mujeres */}
+      {/* Categorías visuales */}
       <div className="category-cards-container">
         <div className="card-container">
           <Link to="/Usuarios/Categorias/Categoriash" className="image-card hombres-card">
