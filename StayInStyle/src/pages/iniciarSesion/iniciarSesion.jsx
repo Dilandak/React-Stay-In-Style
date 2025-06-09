@@ -39,7 +39,7 @@ const IniciarSesion = () => {
 
       const { token, usuario } = response.data;
 
-      // Guardar todo en localStorage
+      // Guardar datos en localStorage
       localStorage.setItem("token", token);
       localStorage.setItem("id_usuario", usuario.id);
       localStorage.setItem("nombre_usuario", usuario.nombre);
@@ -47,28 +47,24 @@ const IniciarSesion = () => {
       localStorage.setItem("direccion_usuario", usuario.direccion);
       localStorage.setItem("userRole", usuario.id_rol);
 
-      // Verificar si es superadmin
-      const isSuperAdmin = email === "superadmin@example.com" && password === "superadmin123";
-      if (isSuperAdmin) {
+      // Determinar el tipo de usuario y redireccionar
+      let redirectPath = "/";
+      let roleMessage = "usuario";
+
+      if (usuario.id_rol === 1) {
+        redirectPath = "/Administrador";
+        roleMessage = "administrador";
+      } else if (email === "superadmin@example.com" && password === "superadmin123") {
         localStorage.setItem("isSuperAdmin", "true");
+        redirectPath = "/Administrador";
+        roleMessage = "SuperAdmin";
       }
 
-      // Mostrar mensaje de éxito
-      if (isSuperAdmin) {
-        setMensaje("¡Inicio de sesión exitoso como SuperAdmin! Redirigiendo...");
-      } else if (usuario.id_rol === 1) {
-        setMensaje("¡Inicio de sesión exitoso como administrador! Redirigiendo...");
-      } else {
-        setMensaje("¡Inicio de sesión exitoso! Redirigiendo...");
-      }
+      setMensaje(`¡Inicio de sesión exitoso como ${roleMessage}! Redirigiendo...`);
 
       // Redirección después de 1.5 segundos
       setTimeout(() => {
-        if (usuario.id_rol === 1 || isSuperAdmin) {
-          navigate("/Administrador");
-        } else {
-          navigate("/");
-        }
+        navigate(redirectPath);
         window.location.reload();
       }, 1500);
 
@@ -83,7 +79,7 @@ const IniciarSesion = () => {
   };
 
   return (
-    <div style={{ backgroundColor: "#E5E1DA", minHeight: "100vh", padding: "20px" }}>
+    <div style={{ backgroundColor: "#E5E5E5", minHeight: "100vh", padding: "20px" }}>
       <div className="auth-page-container">
         <div className="auth-container">
           <h2>Inicia Sesión</h2>

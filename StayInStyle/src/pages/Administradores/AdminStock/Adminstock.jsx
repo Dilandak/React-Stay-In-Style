@@ -478,9 +478,10 @@ const AdminStock = () => {
                           <button onClick={() => handleEdit(item)} className="btn-edit">
                             Editar
                           </button>
-                          <button onClick={() => handleDelete(item.id)} className="btn-delete">
-                            Eliminar
-                          </button>
+                          {/* <button onClick={() => handleDelete(item.id)} className="btn-delete">
+  Eliminar
+</button> */}
+
                         </td>
                       </tr>
                     ))}

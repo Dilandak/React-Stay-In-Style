@@ -118,7 +118,6 @@ const AdminCompras = () => {
   const formatProductos = (productos) => {
     if (!productos || !Array.isArray(productos)) return "No hay detalles de productos";
     
-    // Formatear cada producto mostrando nombre y cantidad
     return productos.map(p => 
       `- ${p.nombre || 'Producto'} (Cantidad: ${p.cantidad || 1})`
     ).join('\n');
@@ -127,8 +126,6 @@ const AdminCompras = () => {
   const enviarNotificacion = async (compraId, estado) => {
     if (isSendingEmail) return;
     setIsSendingEmail(true);
-    
-    console.log(`[Notificación] Iniciando envío para compra ${compraId}, estado: ${estado}`);
     
     try {
       const token = localStorage.getItem("token");
@@ -173,7 +170,7 @@ const AdminCompras = () => {
           break;
         case "Cancelado":
           asunto = "Pedido cancelado";
-          mensaje = `Hola ${usuario.nombre},\n\nLamentamos informarte que tu pedido con los siguientes productos:\n${detalleProductos}\n\nHa sido cancelado.\n\nContacto: soporte@tienda.com`;
+          mensaje = `Hola ${usuario.nombre},\n\nLamentamos informarte que tu pedido con los siguientes productos:\n${detalleProductos}\n\nHa sido cancelado.\n\nContacto: contacto@stayinstyle.com`;
           break;
         default:
           console.error(`[Notificación] Estado no reconocido: ${estado}`);
@@ -213,7 +210,7 @@ const AdminCompras = () => {
 
   const handleSubmit = async (e) => {
     e.preventDefault();
-    if (loading) return;
+    if (loading || !editData) return;
     
     setLoading(true);
     setMensaje("");
@@ -225,13 +222,10 @@ const AdminCompras = () => {
         return;
       }
 
-      const url = editData
-        ? `http://127.0.0.1:5000/compras/${editData.id}`
-        : "http://127.0.0.1:5000/compras";
-      const method = editData ? "PUT" : "POST";
-
+      const url = `http://127.0.0.1:5000/compras/${editData.id}`;
+      
       const response = await fetch(url, {
-        method,
+        method: "PUT",
         headers: {
           "Content-Type": "application/json",
           Authorization: `Bearer ${token}`,
@@ -242,19 +236,13 @@ const AdminCompras = () => {
       const responseData = await response.json();
 
       if (!response.ok) {
-        throw new Error(responseData.mensaje || "Error al guardar la compra");
+        throw new Error(responseData.mensaje || "Error al actualizar la compra");
       }
 
-      let mensajeEstado = editData 
-        ? "Compra actualizada correctamente ✅" 
-        : "Compra creada correctamente ✅";
+      let mensajeEstado = "Compra actualizada correctamente ✅";
 
-      if (editData) {
-        if (formData.estado_pedido !== editData.estado_pedido) {
-          await enviarNotificacion(editData.id, formData.estado_pedido);
-        }
-      } else if (formData.estado_pedido !== "Procesado") {
-        await enviarNotificacion(responseData.id, formData.estado_pedido);
+      if (formData.estado_pedido !== editData.estado_pedido) {
+        await enviarNotificacion(editData.id, formData.estado_pedido);
       }
 
       setMensaje(mensajeEstado);
@@ -356,90 +344,100 @@ const AdminCompras = () => {
           </div>
         )}
 
-        <div className="form-container" data-aos="fade-up" data-aos-duration="1500">
-          <h2>{editData ? "Editar Compra" : "Crear Compra"}</h2>
-          <form onSubmit={handleSubmit} className="form-style">
-            <div className="form-group">
-              <label>Barrio:</label>
-              <input
-                className="input-field"
-                type="text"
-                name="barrio"
-                placeholder="Barrio"
-                value={formData.barrio}
-                onChange={handleChange}
-                required
-              />
-            </div>
+        {editData && (
+          <div className="form-container" data-aos="fade-up" data-aos-duration="1500">
+            <h2>Editar Compra</h2>
+            <form onSubmit={handleSubmit} className="form-style">
+              <div className="form-group">
+                <label>Barrio:</label>
+                <input
+                  className="input-field"
+                  type="text"
+                  name="barrio"
+                  placeholder="Barrio"
+                  value={formData.barrio}
+                  onChange={handleChange}
+                  required
+                />
+              </div>
 
-            <div className="form-group">
-              <label>Observaciones:</label>
-              <input
-                className="input-field"
-                type="text"
-                name="observaciones"
-                placeholder="Observaciones (opcional)"
-                value={formData.observaciones}
-                onChange={handleChange}
-              />
-            </div>
+              <div className="form-group">
+                <label>Observaciones:</label>
+                <input
+                  className="input-field"
+                  type="text"
+                  name="observaciones"
+                  placeholder="Observaciones (opcional)"
+                  value={formData.observaciones}
+                  onChange={handleChange}
+                />
+              </div>
 
-            <div className="form-group">
-              <label>Estado:</label>
-              <select
-                className="input-field"
-                name="estado_pedido"
-                value={formData.estado_pedido}
-                onChange={handleChange}
-                required
+              <div className="form-group">
+                <label>Estado:</label>
+                <select
+                  className="input-field"
+                  name="estado_pedido"
+                  value={formData.estado_pedido}
+                  onChange={handleChange}
+                  required
+                >
+                  {estadosCompra.map(estado => (
+                    <option key={estado} value={estado}>{estado}</option>
+                  ))}
+                </select>
+              </div>
+
+              <div className="form-group">
+                <label>Método de Pago:</label>
+                <select
+                  name="metodo_pago_id"
+                  value={formData.metodo_pago_id}
+                  onChange={handleChange}
+                  className="input-field"
+                  required
+                >
+                  <option value="">Seleccione un método de pago</option>
+                  {metodosPago.map((metodo) => (
+                    <option key={metodo.id} value={metodo.id}>
+                      {metodo.tipo}
+                    </option>
+                  ))}
+                </select>
+              </div>
+
+              <div className="form-group">
+                <label>Usuario:</label>
+                <select
+                  className="input-field"
+                  name="usuario_id"
+                  value={formData.usuario_id}
+                  onChange={handleChange}
+                  required
+                >
+                  <option value="">Seleccione un usuario</option>
+                  {usuarios.map((u) => (
+                    <option key={u.id} value={u.id}>
+                      {u.nombre} {u.apellido || ''}
+                    </option>
+                  ))}
+                </select>
+              </div>
+
+              <button type="submit" className="btn-primary" disabled={loading}>
+                {loading ? "Procesando..." : "Guardar Cambios"}
+              </button>
+              <button 
+                type="button" 
+                className="btn-cancel"
+                onClick={() => setEditData(null)}
+                style={{ marginLeft: '10px' }}
               >
-                {estadosCompra.map(estado => (
-                  <option key={estado} value={estado}>{estado}</option>
-                ))}
-              </select>
-            </div>
-
-            <div className="form-group">
-              <label>Método de Pago:</label>
-              <select
-                name="metodo_pago_id"
-                value={formData.metodo_pago_id}
-                onChange={handleChange}
-                className="input-field"
-                required
-              >
-                <option value="">Seleccione un método de pago</option>
-                {metodosPago.map((metodo) => (
-                  <option key={metodo.id} value={metodo.id}>
-                    {metodo.tipo}
-                  </option>
-                ))}
-              </select>
-            </div>
-
-            <div className="form-group">
-              <label>Usuario:</label>
-              <select
-                className="input-field"
-                name="usuario_id"
-                value={formData.usuario_id}
-                onChange={handleChange}
-                required
-              >
-                <option value="">Seleccione un usuario</option>
-                {usuarios.map((u) => (
-                  <option key={u.id} value={u.id}>
-                    {u.nombre} {u.apellido || ''}
-                  </option>
-                ))}
-              </select>
-            </div>
-
-            <button type="submit" className="btn-primary" disabled={loading}>
-              {loading ? "Procesando..." : editData ? "Guardar Cambios" : "Crear Compra"}
-            </button>
-          </form>
-        </div>
+                Cancelar
+              </button>
+            </form>
+          </div>
+        )}
 
         <div className="table-container" data-aos="fade-up" data-aos-duration="1500">
           <h2>Lista de Compras</h2>

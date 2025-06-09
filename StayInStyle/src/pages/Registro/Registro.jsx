@@ -24,22 +24,27 @@ const Registro = () => {
   };
 
   // Maneja el envío del formulario
-  const handleSubmit = async (e) => {
-    e.preventDefault(); // Previene el comportamiento por defecto (recargar la página)
+const handleSubmit = async (e) => {
+  e.preventDefault(); // Previene el comportamiento por defecto (recargar la página)
 
-    try {
-      // Enviar los datos al backend utilizando Axios
-      const response = await axios.post("http://127.0.0.1:5000/registro", formData);
+  try {
+    // Enviar los datos al backend utilizando Axios
+    const response = await axios.post("http://127.0.0.1:5000/registro", formData);
 
-      // Mostrar mensaje de éxito
-      setMensaje(response.data.mensaje || "¡Registro exitoso!");
+    // Mostrar mensaje de éxito
+    setMensaje(response.data.mensaje || "¡Registro exitoso!");
+    
+    // Esperar 3 segundos antes de redirigir
+    setTimeout(() => {
       // Redirigir a la página de inicio de sesión
       window.location.href = "/iniciarSesion";
-    } catch (error) {
-      // Manejar errores
-      setMensaje(error.response?.data?.mensaje || "Error al registrarse");
-    }
-  };
+    }, 3000);
+    
+  } catch (error) {
+    // Manejar errores
+    setMensaje(error.response?.data?.mensaje || "Error al registrarse");
+  }
+};
 
   return (
     <div style={{ backgroundColor: "#E5E1DA", minHeight: "100vh", padding: "20px" }}>
@@ -105,17 +110,17 @@ const Registro = () => {
 
           <label htmlFor="num_cel">Número de celular</label>
           <input
-            type="text"
-            id="num_cel"
-            name="num_cel"
-            value={formData.num_cel}
-            onChange={handleChange}
-            maxLength="10"
-            placeholder="Ingrese su número de celular"
-            pattern="[0-9]*"
-            title="Ingrese su número de celular"
-            required
-          />
+  type="text"
+  id="num_cel"
+  name="num_cel"
+  value={formData.num_cel}
+  onChange={handleChange}
+  placeholder="Ingrese su número de celular"
+  pattern="\d{10}"
+  title="El número debe tener exactamente 10 dígitos"
+  required
+/>
+
 
           <button type="submit">Registrarse</button>
         </form>

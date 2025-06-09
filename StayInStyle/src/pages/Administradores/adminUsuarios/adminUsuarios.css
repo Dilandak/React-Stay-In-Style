@@ -203,3 +203,34 @@ button {
         font-size: 0.9rem;
     }
 }
+
+
+/* Estilo para botón Editar */
+.btn-editar {
+  background-color: #FFC107;
+  color: #000;
+}
+
+.btn-editar:hover {
+  background-color: #FFA000;
+}
+
+/* Estilo para botón Eliminar */
+.btn-eliminar {
+  background-color: #DC3545;
+  color: #FFF;
+}
+
+.btn-eliminar:hover {
+  background-color: #C82333;
+}
+
+/* Estilo general para ambos botones */
+.btn-editar, .btn-eliminar {
+  padding: 8px 12px;
+  border: none;
+  border-radius: 4px;
+  cursor: pointer;
+  transition: background-color 0.3s ease;
+  margin: 0 5px;
+}

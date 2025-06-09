@@ -213,6 +213,12 @@ const DetalleProducto = () => {
         showConfirmButton: false,
         timer: 1500,
       });
+
+      // Recargar la página después de 1.5 segundos
+    setTimeout(() => {
+      window.location.reload();
+    }, 1500);
+
     } catch (error) {
       Swal.fire({
         icon: "error",
@@ -403,9 +409,7 @@ const DetalleProducto = () => {
                   <div className="reseña-estrellas">
                     {renderEstrellas(reseña.calificacion)}
                   </div>
-                  <span className="reseña-fecha">
-                    {new Date(reseña.fecha_creacion).toLocaleDateString()}
-                  </span>
+                  
                 </div>
                 <p className="reseña-comentario">{reseña.comentario}</p>
               </div>

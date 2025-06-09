@@ -53,7 +53,7 @@ const Administrador = () => {
   return (
     <div className="admin-container">
       {/* Header con botón de cerrar sesión */}
-      <div className="admin-header">
+      <div className="admin-header2">
         <h1>Panel de Administrador</h1>
         
       </div>
@@ -93,8 +93,9 @@ const Administrador = () => {
             )}
           </div>
           <h2>Bienvenidos, Administradores</h2>
-          <p className="nombres">Nombre: Stif Mejor Admin</p>
-          <p className="nombres">Nombre: Dilan Mejor Admin</p>
+          <p className="nombres">Anderson Administrador</p>
+          <p className="nombres">Cristal Administrador</p>
+          <p className="nombres"> Dilandak Administrador</p>
 
           {mensaje && <p className="mensaje">{mensaje}</p>}
         </div>

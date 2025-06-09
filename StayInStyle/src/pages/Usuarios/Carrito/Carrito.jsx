@@ -69,6 +69,7 @@ const Carrito = () => {
     if (result.isConfirmed) {
       await eliminarProducto(productoId, id_talla);
       Swal.fire('Eliminado', 'Producto removido del carrito', 'success');
+      window.location.reload(); // Recarga la página después de eliminar
     }
   };
 
@@ -87,6 +88,19 @@ const Carrito = () => {
     if (result.isConfirmed) {
       await vaciarCarrito();
       Swal.fire('Carrito vacío', 'Todos los productos fueron eliminados', 'success');
+      window.location.reload(); // Recarga la página después de vaciar
+    }
+  };
+
+  const handleActualizarCantidad = async (id_producto, id_talla, nuevaCantidad) => {
+    try {
+      await actualizarCantidad(id_producto, id_talla, nuevaCantidad);
+      // Recarga la página después de 500ms para dar tiempo a la actualización
+      setTimeout(() => {
+        window.location.reload();
+      }, 1);
+    } catch (error) {
+      Swal.fire('Error', 'No se pudo actualizar la cantidad', 'error');
     }
   };
 
@@ -151,14 +165,22 @@ const Carrito = () => {
                     
                     <div className="quantity-control">
                       <button
-                        onClick={() => actualizarCantidad(producto.id_producto, producto.id_talla, producto.cantidad - 1)}
+                        onClick={() => handleActualizarCantidad(
+                          producto.id_producto, 
+                          producto.id_talla, 
+                          producto.cantidad - 1
+                        )}
                         disabled={producto.cantidad <= 1}
                       >
                         -
                       </button>
                       <span>{producto.cantidad}</span>
                       <button
-                        onClick={() => actualizarCantidad(producto.id_producto, producto.id_talla, producto.cantidad + 1)}
+                        onClick={() => handleActualizarCantidad(
+                          producto.id_producto, 
+                          producto.id_talla, 
+                          producto.cantidad + 1
+                        )}
                         disabled={!producto.puede_aumentar}
                       >
                         +

@@ -272,9 +272,9 @@ const AdminUsuarios = () => {
                   <td>{usuario.direccion || "-"}</td>
                   <td>{getRolNombre(usuario.id_rol)}</td>
                   <td>
-                    <button onClick={() => handleEdit(usuario)}>Editar</button>
-                    <button onClick={() => handleDelete(usuario.id)}>Eliminar</button>
-                  </td>
+                  <button className="btn-editar" onClick={() => handleEdit(usuario)}>Editar</button>
+                  <button className="btn-eliminar" onClick={() => handleDelete(usuario.id)}>Eliminar</button>
+                </td>
                 </tr>
               ))}
             </tbody>
