@@ -2,7 +2,7 @@ import React, { useEffect } from "react";
 import { useNavigate } from 'react-router-dom';
 import Swal from 'sweetalert2';
 import { useCarrito } from "../../../context/CarritoContext";
-import "./carrito.css";
+import "./Carrito.css";
 
 const Carrito = () => {
   const navigate = useNavigate();
