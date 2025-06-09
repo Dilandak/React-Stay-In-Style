@@ -45,7 +45,7 @@ const AdminReseñas = () => {
 
     const fetchReseñas = async () => {
         try {
-            const response = await fetch("http://127.0.0.1:5000/reseñas", {
+            const response = await fetch("https://backend-stay-in-style.onrender.com/reseñas", {
                 headers: { Authorization: `Bearer ${token}` },
             });
             
@@ -62,7 +62,7 @@ const AdminReseñas = () => {
 
     const fetchProductos = async () => {
         try {
-            const response = await fetch("http://127.0.0.1:5000/productos", {
+            const response = await fetch("https://backend-stay-in-style.onrender.com/productos", {
                 headers: { Authorization: `Bearer ${token}` },
             });
             
@@ -79,7 +79,7 @@ const AdminReseñas = () => {
 
     const fetchUsuarios = async () => {
         try {
-            const response = await fetch("http://127.0.0.1:5000/usuarios", {
+            const response = await fetch("https://backend-stay-in-style.onrender.com/usuarios", {
                 headers: { Authorization: `Bearer ${token}` },
             });
             
@@ -114,10 +114,10 @@ const AdminReseñas = () => {
             let url, method;
             
             if (editData) {
-                url = `http://127.0.0.1:5000/reseñas/${editData.id}`;
+                url = `https://backend-stay-in-style.onrender.com/reseñas/${editData.id}`;
                 method = "PUT";
             } else {
-                url = `http://127.0.0.1:5000/productos/${formData.id_producto}/crear-reseña`;
+                url = `https://backend-stay-in-style.onrender.com/productos/${formData.id_producto}/crear-reseña`;
                 method = "POST";
             }
 
@@ -168,7 +168,7 @@ const AdminReseñas = () => {
         if (!window.confirm("¿Estás seguro de eliminar esta reseña?")) return;
         
         try {
-            const response = await fetch(`http://127.0.0.1:5000/reseñas/${id}`, {
+            const response = await fetch(`https://backend-stay-in-style.onrender.com/reseñas/${id}`, {
                 method: "DELETE",
                 headers: { Authorization: `Bearer ${token}` },
             });

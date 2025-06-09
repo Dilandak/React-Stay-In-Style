@@ -38,9 +38,9 @@ const DetalleProducto = () => {
         setError(null);
         
         const [productoResponse, reseñasResponse, tallasResponse] = await Promise.all([
-          axios.get(`http://localhost:5000/productos/${id}`),
-          axios.get(`http://localhost:5000/productos/${id}/reseñas`).catch(() => ({ data: [] })),
-          axios.get(`http://localhost:5000/api/productos/${id}/tallas-disponibles`)
+          axios.get(`https://backend-stay-in-style.onrender.com/productos/${id}`),
+          axios.get(`https://backend-stay-in-style.onrender.com/productos/${id}/reseñas`).catch(() => ({ data: [] })),
+          axios.get(`https://backend-stay-in-style.onrender.com/api/productos/${id}/tallas-disponibles`)
         ]);
 
         if (!productoResponse.data) {
@@ -192,7 +192,7 @@ const DetalleProducto = () => {
       }
 
       const response = await axios.post(
-        `http://localhost:5000/productos/${id}/crear-reseña`,
+        `https://backend-stay-in-style.onrender.com/productos/${id}/crear-reseña`,
         {
           comentario: nuevaReseña.comentario,
           calificacion: nuevaReseña.calificacion,

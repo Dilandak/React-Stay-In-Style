@@ -31,9 +31,9 @@ const AdminProductos = () => {
     setLoading(true);
     try {
       const endpoints = [
-        { url: "http://localhost:5000/productos", key: "productos" },
-        { url: "http://localhost:5000/categorias", key: "categorias" },
-        { url: "http://localhost:5000/api/generos", key: "generos" }
+        { url: "https://backend-stay-in-style.onrender.com/productos", key: "productos" },
+        { url: "https://backend-stay-in-style.onrender.com/categorias", key: "categorias" },
+        { url: "https://backend-stay-in-style.onrender.com/api/generos", key: "generos" }
       ];
 
       const responses = await Promise.all(
@@ -108,8 +108,8 @@ const AdminProductos = () => {
     }
 
     const url = editData
-      ? `http://localhost:5000/productos/${editData.id}`
-      : "http://localhost:5000/productos/nuevo";
+      ? `https://backend-stay-in-style.onrender.com/productos/${editData.id}`
+      : "https://backend-stay-in-style.onrender.com/productos/nuevo";
     const method = editData ? "PUT" : "POST";
 
     try {
@@ -180,7 +180,7 @@ const AdminProductos = () => {
     if (!window.confirm("¿Estás seguro de eliminar este producto?")) return;
     
     try {
-      const response = await fetch(`http://localhost:5000/productos/${id}`, {
+      const response = await fetch(`https://backend-stay-in-style.onrender.com/productos/${id}`, {
         method: "DELETE",
         headers: {
           Authorization: `Bearer ${token}`,

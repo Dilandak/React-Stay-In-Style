@@ -18,7 +18,7 @@ const Categoriasm = () => {
     const cargarProductos = async () => {
       try {
         // Obtenemos todos los productos
-        const response = await axios.get('http://127.0.0.1:5000/productos');
+        const response = await axios.get('https://backend-stay-in-style.onrender.com/productos');
         
         // Filtramos y mapeamos los productos para mujeres (id_genero = 2)
         const productosMujeres = response.data

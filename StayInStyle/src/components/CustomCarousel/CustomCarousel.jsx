@@ -31,7 +31,7 @@ const CustomCarousel = () => {
       try {
         const ids = [21, 22, 23]; // IDs de los productos destacados
         const responses = await Promise.all(
-          ids.map(id => axios.get(`http://127.0.0.1:5000/productos/${id}`))
+          ids.map(id => axios.get(`https://backend-stay-in-style.onrender.com/productos/${id}`))
         );
         
         // Procesamos los productos para asegurar las URLs de imágenes

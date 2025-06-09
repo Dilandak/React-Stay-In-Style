@@ -28,7 +28,7 @@ const Home = () => {
   // Función simplificada para verificar disponibilidad
   const verificarDisponibilidad = async (productoId) => {
     try {
-      const response = await axios.get(`http://127.0.0.1:5000/productos/${productoId}`);
+      const response = await axios.get(`https://backend-stay-in-style.onrender.com/productos/${productoId}`);
       return response.data.disponible !== false && response.data.estado !== "Agotado";
     } catch (error) {
       console.error(`Error al verificar disponibilidad para producto ${productoId}:`, error);
@@ -44,7 +44,7 @@ const Home = () => {
         
         // Obtener los datos básicos de los productos
         const productosPromises = productosIds.map(id => 
-          axios.get(`http://127.0.0.1:5000/productos/${id}`)
+          axios.get(`https://backend-stay-in-style.onrender.com/productos/${id}`)
         );
         
         const responses = await Promise.all(productosPromises);

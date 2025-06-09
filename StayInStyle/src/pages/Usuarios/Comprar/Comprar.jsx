@@ -25,10 +25,10 @@ const Comprar = () => {
         const fetchDatosUsuario = async () => {
             try {
                 const [carritoResponse, usuarioResponse] = await Promise.all([
-                    axios.get('http://localhost:5000/api/carritos/productos', {
+                    axios.get('https://backend-stay-in-style.onrender.com/api/carritos/productos', {
                         headers: { 'Authorization': `Bearer ${token}` }
                     }),
-                    axios.get(`http://localhost:5000/usuarios/${usuario_actual_id}`, {
+                    axios.get(`https://backend-stay-in-style.onrender.com/usuarios/${usuario_actual_id}`, {
                         headers: { 'Authorization': `Bearer ${token}` }
                     })
                 ]);
@@ -56,7 +56,7 @@ const Comprar = () => {
 
         const fetchMetodosPago = async () => {
             try {
-                const response = await axios.get('http://localhost:5000/metodos_pago', {
+                const response = await axios.get('https://backend-stay-in-style.onrender.com/metodos_pago', {
                     headers: { 'Authorization': `Bearer ${token}` }
                 });
                 setMetodosPago(response.data);
@@ -96,7 +96,7 @@ const Comprar = () => {
                 precio_unitario: item.precio_unitario
             }));
 
-            const response = await axios.post('http://localhost:5000/Crearcompras', {
+            const response = await axios.post('https://backend-stay-in-style.onrender.com/Crearcompras', {
                 barrio,
                 observaciones: observaciones || null,
                 metodo_pago_id: parseInt(metodoSeleccionado),
@@ -121,7 +121,7 @@ const Comprar = () => {
                         `✔ ${item.nombre} (Talla: ${item.talla})  ${item.cantidad} x $${item.precio_unitario.toLocaleString()} = $${(item.precio_unitario * item.cantidad).toLocaleString()}`
                     ).join('\n');
                     
-                    await axios.post('http://localhost:5000/notificaciones', {
+                    await axios.post('https://backend-stay-in-style.onrender.com/notificaciones', {
                         asunto: `¡${nombreUsuario}, tu compra en STAY IN STYLE fue exitosa! 🎉`,
                         mensaje: `¡Felicitaciones ${nombreUsuario}! 🎉\n\nTu pedido está confirmado.\n\n📅 Fecha: ${fechaCompra}\n📦 Detalles de envío:\n📍 Barrio: ${barrio}\n💳 Método de pago: ${metodoPago}\n📝 Observaciones: ${observaciones || 'Ninguna'}\n\n🛍️ Productos:\n${detalleProductos}\n\n💰 Total: $${resultado.total.toLocaleString()}\n\nTu pedido estará listo en 5-8 días hábiles.\n\n¿Necesitas ayuda?\n📧 contacto@stayinstyle.com\n📞 +57 315 460 1332\n\n¡Gracias por comprar en STAY IN STYLE!`,
                         destinatarios: [correoUsuario],
@@ -135,7 +135,7 @@ const Comprar = () => {
             }
 
             try {
-                await axios.delete('http://localhost:5000/api/carritos/productos', {
+                await axios.delete('https://backend-stay-in-style.onrender.com/api/carritos/productos', {
                     headers: { 'Authorization': `Bearer ${token}` },
                     data: { producto_id: 'all' }
                 });

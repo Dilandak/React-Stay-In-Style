@@ -22,7 +22,7 @@ export default function ResetPasswordPage() {
     }
 
     try {
-      const response = await axios.post(`http://localhost:5000/reset-password/${token}`, {
+      const response = await axios.post(`https://backend-stay-in-style.onrender.com/reset-password/${token}`, {
         contrasena,
       });
       setExito(true);

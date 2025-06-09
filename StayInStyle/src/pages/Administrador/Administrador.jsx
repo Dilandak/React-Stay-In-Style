@@ -34,7 +34,7 @@ const Administrador = () => {
 
     const fetchAdminData = async () => {
       try {
-        const response = await axios.get("http://127.0.0.1:5000/superadmin", {
+        const response = await axios.get("https://backend-stay-in-style.onrender.com/superadmin", {
           headers: { Authorization: `Bearer ${token}` },
         });
         setAdminData(response.data);

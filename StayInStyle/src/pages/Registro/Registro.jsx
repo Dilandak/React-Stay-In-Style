@@ -29,7 +29,7 @@ const handleSubmit = async (e) => {
 
   try {
     // Enviar los datos al backend utilizando Axios
-    const response = await axios.post("http://127.0.0.1:5000/registro", formData);
+    const response = await axios.post("https://backend-stay-in-style.onrender.com/registro", formData);
 
     // Mostrar mensaje de éxito
     setMensaje(response.data.mensaje || "¡Registro exitoso!");

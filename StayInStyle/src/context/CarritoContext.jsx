@@ -2,7 +2,7 @@ import React, { createContext, useState, useEffect, useContext, useCallback } fr
 import axios from "axios";
 import Swal from "sweetalert2";
 
-const API_URL = "http://localhost:5000/api";
+const API_URL = "https://backend-stay-in-style.onrender.com/api";
 
 const CarritoContext = createContext();
 

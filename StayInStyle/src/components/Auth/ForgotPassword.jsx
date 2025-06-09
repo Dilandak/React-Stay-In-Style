@@ -12,7 +12,7 @@ const ForgotPassword = () => {
     setError('');
 
     try {
-      const response = await axios.post('http://localhost:5000/forgot-password', { email });
+      const response = await axios.post('https://backend-stay-in-style.onrender.com/forgot-password', { email });
       setMensaje(response.data.mensaje);
     } catch (err) {
       if (err.response && err.response.data && err.response.data.mensaje) {

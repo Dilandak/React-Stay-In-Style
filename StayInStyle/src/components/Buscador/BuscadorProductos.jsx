@@ -30,7 +30,7 @@ const BuscadorProductos = () => {
   useEffect(() => {
     const fetchCategorias = async () => {
       try {
-        const response = await axios.get('http://localhost:5000/categorias');
+        const response = await axios.get('https://backend-stay-in-style.onrender.com/categorias');
         setCategorias(response.data);
       } catch (error) {
         console.error('Error fetching categorías:', error);
@@ -48,7 +48,7 @@ const BuscadorProductos = () => {
         if (searchTerm) params.append('search', searchTerm);
         if (categoria) params.append('categoria', categoria);
         
-        const response = await axios.get(`http://localhost:5000/productos?${params.toString()}`);
+        const response = await axios.get(`https://backend-stay-in-style.onrender.com/productos?${params.toString()}`);
         
         // Procesar productos para asegurar URLs de imágenes correctas
         const productosProcesados = response.data.map(producto => ({

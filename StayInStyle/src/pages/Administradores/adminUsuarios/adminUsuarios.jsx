@@ -29,7 +29,7 @@ const AdminUsuarios = () => {
   // Obtener la lista de roles desde el backend
   const fetchRoles = async () => {
     try {
-      const response = await fetch("http://127.0.0.1:5000/roles", {
+      const response = await fetch("https://backend-stay-in-style.onrender.com/roles", {
         headers: { Authorization: `Bearer ${token}` },
       });
       const data = await response.json();
@@ -48,7 +48,7 @@ const AdminUsuarios = () => {
   const fetchUsuarios = async () => {
     setLoading(true);
     try {
-      const response = await fetch("http://127.0.0.1:5000/usuarios", {
+      const response = await fetch("https://backend-stay-in-style.onrender.com/usuarios", {
         headers: { Authorization: `Bearer ${token}` },
       });
       const data = await response.json();
@@ -82,8 +82,8 @@ const AdminUsuarios = () => {
     }
 
     const url = editData
-      ? `http://127.0.0.1:5000/usuarios/${editData.id}`
-      : "http://127.0.0.1:5000/usuarios";
+      ? `https://backend-stay-in-style.onrender.com/usuarios/${editData.id}`
+      : "https://backend-stay-in-style.onrender.com/usuarios";
     const method = editData ? "PUT" : "POST";
 
     try {
@@ -146,7 +146,7 @@ const AdminUsuarios = () => {
     }
 
     try {
-      const response = await fetch(`http://127.0.0.1:5000/usuarios/${id}`, {
+      const response = await fetch(`https://backend-stay-in-style.onrender.com/usuarios/${id}`, {
         method: "DELETE",
         headers: { Authorization: `Bearer ${token}` },
       });

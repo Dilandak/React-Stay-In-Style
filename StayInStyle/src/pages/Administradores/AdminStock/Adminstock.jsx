@@ -27,10 +27,10 @@ const AdminStock = () => {
         setLoading(true);
         
         const [productsRes, tallasRes] = await Promise.all([
-          fetch('http://localhost:5000/productos', {
+          fetch('https://backend-stay-in-style.onrender.com/productos', {
             headers: { 'Authorization': `Bearer ${token}` }
           }),
-          fetch('http://localhost:5000/api/tallas', {
+          fetch('https://backend-stay-in-style.onrender.com/api/tallas', {
             headers: { 'Authorization': `Bearer ${token}` }
           })
         ]);
@@ -65,7 +65,7 @@ const AdminStock = () => {
 
   const fetchInventory = async () => {
     try {
-      const res = await fetch(`http://localhost:5000/api/productos/${formData.id_producto}/inventario`, {
+      const res = await fetch(`https://backend-stay-in-style.onrender.com/api/productos/${formData.id_producto}/inventario`, {
         headers: { 'Authorization': `Bearer ${token}` }
       });
       if (!res.ok) throw new Error(await res.text());
@@ -78,7 +78,7 @@ const AdminStock = () => {
 
   const fetchHistorialProducto = async () => {
     try {
-      const res = await fetch(`http://localhost:5000/api/historial-stock/producto/${formData.id_producto}`, {
+      const res = await fetch(`https://backend-stay-in-style.onrender.com/api/historial-stock/producto/${formData.id_producto}`, {
         headers: { 'Authorization': `Bearer ${token}` }
       });
       if (!res.ok) throw new Error(await res.text());
@@ -91,7 +91,7 @@ const AdminStock = () => {
 
   const fetchHistorialGeneral = async () => {
     try {
-      const res = await fetch('http://localhost:5000/api/historial-stock', {
+      const res = await fetch('https://backend-stay-in-style.onrender.com/api/historial-stock', {
         headers: { 'Authorization': `Bearer ${token}` }
       });
       if (!res.ok) throw new Error(await res.text());
@@ -135,7 +135,7 @@ const AdminStock = () => {
         
         stockAnterior = itemExistente.stock;
         method = 'PUT';
-        url = `http://localhost:5000/api/inventario/${editId}`;
+        url = `https://backend-stay-in-style.onrender.com/api/inventario/${editId}`;
         response = await fetch(url, {
           method,
           headers: {
@@ -149,7 +149,7 @@ const AdminStock = () => {
       } else {
         // Modo creación
         method = 'POST';
-        url = `http://localhost:5000/api/productos/${formData.id_producto}/inventario`;
+        url = `https://backend-stay-in-style.onrender.com/api/productos/${formData.id_producto}/inventario`;
         response = await fetch(url, {
           method,
           headers: {
@@ -192,7 +192,7 @@ const AdminStock = () => {
 
   const registerHistorialChange = async (inventoryId, oldStock, newStock, motivo) => {
     try {
-      const response = await fetch('http://localhost:5000/api/historial-stock/crear', {
+      const response = await fetch('https://backend-stay-in-style.onrender.com/api/historial-stock/crear', {
         method: 'POST',
         headers: {
           'Authorization': `Bearer ${token}`,
@@ -233,7 +233,7 @@ const AdminStock = () => {
       const item = inventory.find(i => i.id === id);
       if (!item) throw new Error("Registro no encontrado");
       
-      const response = await fetch(`http://localhost:5000/api/inventario/${id}`, {
+      const response = await fetch(`https://backend-stay-in-style.onrender.com/api/inventario/${id}`, {
         method: 'DELETE',
         headers: { 'Authorization': `Bearer ${token}` }
       });

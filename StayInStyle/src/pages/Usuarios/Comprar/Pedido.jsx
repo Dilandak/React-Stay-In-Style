@@ -58,7 +58,7 @@ const Pedido = () => {
 
         const fetchPedidos = async () => {
             try {
-                const response = await fetch('http://localhost:5000/api/mis-compras', {
+                const response = await fetch('https://backend-stay-in-style.onrender.com/api/mis-compras', {
                     headers: {
                         'Authorization': `Bearer ${token}`
                     }

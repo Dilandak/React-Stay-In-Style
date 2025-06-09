@@ -37,7 +37,7 @@ const AdminCompras = () => {
         return;
       }
 
-      const response = await fetch("http://127.0.0.1:5000/compras/todas", {
+      const response = await fetch("https://backend-stay-in-style.onrender.com/compras/todas", {
         method: "GET",
         headers: {
           "Content-Type": "application/json",
@@ -65,7 +65,7 @@ const AdminCompras = () => {
         return;
       }
 
-      const response = await fetch("http://127.0.0.1:5000/metodos_pago", {
+      const response = await fetch("https://backend-stay-in-style.onrender.com/metodos_pago", {
         headers: {
           Authorization: `Bearer ${token}`,
         },
@@ -91,7 +91,7 @@ const AdminCompras = () => {
         return;
       }
 
-      const response = await fetch("http://127.0.0.1:5000/usuarios", {
+      const response = await fetch("https://backend-stay-in-style.onrender.com/usuarios", {
         headers: {
           Authorization: `Bearer ${token}`,
         },
@@ -177,7 +177,7 @@ const AdminCompras = () => {
           return;
       }
 
-      const response = await fetch("http://localhost:5000/notificaciones", {
+      const response = await fetch("https://backend-stay-in-style.onrender.com/notificaciones", {
         method: "POST",
         headers: {
           "Content-Type": "application/json",
@@ -222,7 +222,7 @@ const AdminCompras = () => {
         return;
       }
 
-      const url = `http://127.0.0.1:5000/compras/${editData.id}`;
+      const url = `https://backend-stay-in-style.onrender.com/compras/${editData.id}`;
       
       const response = await fetch(url, {
         method: "PUT",
@@ -292,7 +292,7 @@ const AdminCompras = () => {
 
       await enviarNotificacion(id, "Cancelado");
 
-      const response = await fetch(`http://127.0.0.1:5000/compras/${id}`, {
+      const response = await fetch(`https://backend-stay-in-style.onrender.com/compras/${id}`, {
         method: "DELETE",
         headers: {
           Authorization: `Bearer ${token}`,
