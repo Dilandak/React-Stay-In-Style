@@ -1,7 +1,7 @@
 import React, { useEffect, useState } from "react";
 import "./Navbar.css";
 import '@fortawesome/fontawesome-free/css/all.min.css';
-import { useNavigate } from "react-router-dom";
+import { useNavigate, Link } from "react-router-dom";
 
 const Navbar = () => {
   const [userData, setUserData] = useState({
@@ -10,6 +10,7 @@ const Navbar = () => {
     rol: null,
     isSuperAdmin: false
   });
+
   const navigate = useNavigate();
 
   useEffect(() => {
@@ -47,19 +48,19 @@ const Navbar = () => {
     window.location.reload();
   };
 
-  // Navbar para SuperAdmin (solo cerrar sesión)
+  // Navbar para SuperAdmin
   if (userData.isSuperAdmin) {
     return (
       <header className="superadmin-header">
         <div className="logo-container">
-          <a href="/Administrador" className="logo-link">
+          <Link to="/Administrador" className="logo-link">
             <img
               src="/src/assets/Imagenes/Stay_In_Style.png"
               alt="Logo"
               className="logo-image"
             />
             <span className="logo-text">Stay in Style</span>
-          </a>
+          </Link>
         </div>
         <nav>
           <ul>
@@ -77,26 +78,26 @@ const Navbar = () => {
     );
   }
 
-  // Navbar para administrador normal (rol 1)
+  // Navbar para admin normal (rol 1)
   if (userData.isLoggedIn && userData.rol === 1) {
     return (
       <header className="admin-header">
         <div className="logo-container">
-          <a href="/Administrador" className="logo-link">
+          <Link to="/Administrador" className="logo-link">
             <img
               src="/src/assets/Imagenes/Stay_In_Style.png"
               alt="Logo"
               className="logo-image"
             />
             <span className="logo-text">Stay in Style</span>
-          </a>
+          </Link>
         </div>
         <nav>
           <ul>
             <li>
-              <a href="/Administrador">
+              <Link to="/Administrador">
                 <i className="fas fa-home"></i> Inicio Admin
-              </a>
+              </Link>
             </li>
             <li className="nombre-usuario">
               <i className="fas fa-user-shield"></i> Admin: {userData.nombre}
@@ -117,51 +118,48 @@ const Navbar = () => {
     return (
       <header>
         <div className="logo-container">
-          <a href="/" className="logo-link">
+          <Link to="/" className="logo-link">
             <img
               src="/src/assets/Imagenes/Stay_In_Style.png"
               alt="Logo"
               className="logo-image"
             />
             <span className="logo-text">Stay in Style</span>
-          </a>
+          </Link>
         </div>
         <nav>
           <ul>
             <li>
-              <a href="/">
+              <Link to="/">
                 <i className="fas fa-home"></i> Inicio
-              </a>
+              </Link>
             </li>
             <li>
-              <a href="/historial-compras">
+              <Link to="/historial-compras">
                 <i className="fas fa-receipt"></i> Historial de compras
-              </a>
+              </Link>
             </li>
             <li>
-              <a href="/Pedido">
+              <Link to="/Pedido">
                 <i className="fas fa-truck"></i> Mi Pedido
-              </a>
+              </Link>
             </li>
             <li>
-              
-              
-              <a href="/Carrito">
+              <Link to="/Carrito">
                 <i className="fas fa-shopping-cart"></i> Carrito
-              </a>
+              </Link>
             </li>
             <li>
-              <a href="#">
+              <span>
                 <i className="fas fa-th-large"></i> Categorías
-              </a>
+              </span>
               <ul>
                 <li>
-                  <a href="/Usuarios/Categorias/Categoriash">Hombre</a>
+                  <Link to="/Usuarios/Categorias/Categoriash">Hombre</Link>
                 </li>
                 <li>
-                  <a href="/Usuarios/Categorias/Categoriasm">Mujer</a>
+                  <Link to="/Usuarios/Categorias/Categoriasm">Mujer</Link>
                 </li>
-                
               </ul>
             </li>
             <li className="nombre-usuario">Hola, {userData.nombre}</li>
@@ -176,51 +174,51 @@ const Navbar = () => {
     );
   }
 
-  // Navbar para usuarios no logueados
+  // Navbar para no logueados
   return (
     <header>
       <div className="logo-container">
-        <a href="/" className="logo-link">
+        <Link to="/" className="logo-link">
           <img
             src="/src/assets/Imagenes/Stay_In_Style.png"
             alt="Logo"
             className="logo-image"
           />
           <span className="logo-text">Stay in Style</span>
-        </a>
+        </Link>
       </div>
       <nav>
         <ul>
           <li>
-            <a href="/">
+            <Link to="/">
               <i className="fas fa-home"></i> Inicio
-            </a>
+            </Link>
           </li>
           <li>
-            <a href="/IniciarSesion">
+            <Link to="/IniciarSesion">
               <i className="fas fa-user"></i> Iniciar Sesión
-            </a>
+            </Link>
           </li>
           <li>
-            <a href="/Registro">
+            <Link to="/Registro">
               <i className="fas fa-user-plus"></i> Registrarse
-            </a>
+            </Link>
           </li>
           <li>
-            <a href="/Carrito">
+            <Link to="/Carrito">
               <i className="fas fa-shopping-cart"></i> Carrito
-            </a>
+            </Link>
           </li>
           <li>
-            <a href="#">
+            <span>
               <i className="fas fa-th-large"></i> Categorías
-            </a>
+            </span>
             <ul>
               <li>
-                <a href="/Usuarios/Categorias/Categoriash">Hombre</a>
+                <Link to="/Usuarios/Categorias/Categoriash">Hombre</Link>
               </li>
               <li>
-                <a href="/Usuarios/Categorias/Categoriasm">Mujer</a>
+                <Link to="/Usuarios/Categorias/Categoriasm">Mujer</Link>
               </li>
             </ul>
           </li>
