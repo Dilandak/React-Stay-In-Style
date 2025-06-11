@@ -141,33 +141,7 @@ const Home = () => {
         <CustomCarousel />
       </div>
 
-      
-
-      {/* Categorías visuales */}
-      <div className="category-cards-container">
-        <div className="card-container">
-          <Link to="/Usuarios/Categorias/Categoriash" className="image-card hombres-card">
-            <img
-              src={categoriaHombre}
-              alt="Hombres"
-              className="image-card-img"
-            />
-            <h3 className="card-caption">Hombres</h3>
-          </Link>
-        </div>
-
-        <div className="card-container">
-          <Link to="/Usuarios/Categorias/Categoriasm" className="image-card mujeres-card">
-            <img
-              src={categoriaMujer}
-              alt="Mujeres"
-              className="image-card-img"
-            />
-            <h3 className="card-caption">Mujeres</h3>
-          </Link>
-        </div>
-
-          {/* Sección de descarga mejorada */}
+        {/* Sección de descarga mejorada */}
 <div className="apk-download-section" style={{
   margin: '60px auto',
   padding: '40px 30px',
@@ -207,9 +181,35 @@ const Home = () => {
       </div>
 
 
-      </div>
+      {/* Categorías visuales */}
+      <div className="category-cards-container">
+        <div className="card-container">
+          <Link to="/Usuarios/Categorias/Categoriash" className="image-card hombres-card">
+            <img
+              src={categoriaHombre}
+              alt="Hombres"
+              className="image-card-img"
+            />
+            <h3 className="card-caption">Hombres</h3>
+          </Link>
+        </div>
+
+        <div className="card-container">
+          <Link to="/Usuarios/Categorias/Categoriasm" className="image-card mujeres-card">
+            <img
+              src={categoriaMujer}
+              alt="Mujeres"
+              className="image-card-img"
+            />
+            <h3 className="card-caption">Mujeres</h3>
+          </Link>
+        </div>
+
       
 
+      </div>
+      
+      
     </div>
   );
 };
