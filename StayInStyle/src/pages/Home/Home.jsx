@@ -167,6 +167,9 @@ const Home = () => {
           </Link>
         </div>
 
+      
+
+      </div>
         {/* Botón para descargar el APK */}
       <div className="descargar-apk-container" style={{
         display: 'flex',
@@ -216,8 +219,6 @@ const Home = () => {
             📥 Descargar APK
           </button>
         </a>
-      </div>
-
       </div>
     </div>
   );
