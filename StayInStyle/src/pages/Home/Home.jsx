@@ -167,10 +167,7 @@ const Home = () => {
           </Link>
         </div>
 
-      
-
-      </div>
-        {/* Sección de descarga mejorada */}
+          {/* Sección de descarga mejorada */}
 <div className="apk-download-section" style={{
   margin: '60px auto',
   padding: '40px 30px',
@@ -209,7 +206,10 @@ const Home = () => {
   </a>
       </div>
 
+
+      </div>
       
+
     </div>
   );
 };
