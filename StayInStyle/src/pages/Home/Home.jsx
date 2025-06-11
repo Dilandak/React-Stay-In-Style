@@ -136,9 +136,60 @@ const Home = () => {
         ))}
       </div>
 
-      {/* Carrusel */}
+       {/* Carrusel */}
       <div className="video-cards-container">
         <CustomCarousel />
+      </div>
+
+      {/* Botón para descargar el APK */}
+      <div className="descargar-apk-container" style={{
+        display: 'flex',
+        flexDirection: 'column',
+        alignItems: 'center',
+        justifyContent: 'center',
+        padding: '40px 20px',
+        backgroundColor: '#f3f3f3',
+        margin: '40px auto',
+        borderRadius: '10px',
+        maxWidth: '600px'
+      }}>
+        <h2 style={{
+          marginBottom: '15px',
+          fontSize: '24px',
+          color: '#333',
+          textAlign: 'center'
+        }}>
+          📲 ¡Descarga nuestra App Android!
+        </h2>
+        <p style={{
+          marginBottom: '25px',
+          fontSize: '16px',
+          color: '#555',
+          textAlign: 'center'
+        }}>
+          Lleva Stay In Style contigo y compra desde tu celular más fácil.
+        </p>
+        <a
+          href="https://tusitio.com/app-release.apk"
+          download
+          style={{ textDecoration: 'none' }}
+        >
+          <button style={{
+            padding: '12px 28px',
+            fontSize: '16px',
+            backgroundColor: '#000',
+            color: '#fff',
+            border: 'none',
+            borderRadius: '8px',
+            cursor: 'pointer',
+            transition: '0.3s'
+          }}
+            onMouseOver={e => e.target.style.backgroundColor = '#222'}
+            onMouseOut={e => e.target.style.backgroundColor = '#000'}
+          >
+            📥 Descargar APK
+          </button>
+        </a>
       </div>
 
       {/* Categorías visuales */}
