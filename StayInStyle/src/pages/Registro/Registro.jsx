@@ -36,9 +36,8 @@ const handleSubmit = async (e) => {
     
     // Esperar 3 segundos antes de redirigir
     setTimeout(() => {
-      // Redirigir a la página de inicio de sesión
-      window.location.href = "/iniciarSesion";
-    }, 3000);
+  navigate("/IniciarSesion");
+}, 3000);
     
   } catch (error) {
     // Manejar errores
