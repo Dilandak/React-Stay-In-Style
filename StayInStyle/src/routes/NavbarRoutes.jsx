@@ -48,7 +48,7 @@ const NavbarRoutes = () => {
       <Route path="/Registro" element={<Registro />} />
       <Route path="/IniciarSesion" element={<IniciarSesion />} />
       <Route path="/ForgotPassword" element={<ForgotPassword/>} />
-      <Route path="/ResetPasswordPage/:token" element={<ResetPasswordPage />} />
+      <Route path="/reset-password/:token" element={<ResetPasswordPage />} />
       <Route path="/Usuarios/sobre_nosotros/QueEsStayInStyle" element={<QueEsStayInStyle />} />
       <Route path="/Usuarios/sobre_nosotros/QuienesSomos" element={<QuienesSomos />} />
       <Route path="/productos/:id" element={<DetalleProducto />} />
