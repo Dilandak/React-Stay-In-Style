@@ -129,8 +129,8 @@ const handleSubmit = async (e) => {
 
         <div className="link_registro">
           <p>
-            ¿Ya tienes una cuenta creada? <a href="/iniciarSesion">Inicia Sesión</a>
-          </p>
+  ¿Ya tienes una cuenta creada? <Link to="/IniciarSesion">Inicia Sesión</Link>
+</p>
         </div>
       </div>
     </div>
