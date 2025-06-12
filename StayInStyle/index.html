@@ -2,11 +2,45 @@
 <html lang="en">
   <head>
     <meta charset="UTF-8" />
-    <link rel="icon" type="image/svg+xml" href="/vite.svg" />
+    <!-- Favicon (icono de pestaña) -->
+    <link rel="icon" type="image/png" href="/React-Stay-In-Style/StayInStyle/src/assets/Imagenes/Stay_In_Style.png" />
+    
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>Vite + React</title>
+    <title>Stay In Style</title>
+
+    <style>
+      body {
+        margin: 0;
+        background-color: #111;
+        color: white;
+        font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        flex-direction: column;
+        height: 100vh;
+      }
+
+      .logo {
+        width: 100px;
+        height: auto;
+        margin-bottom: 10px;
+      }
+
+      .brand-name {
+        font-size: 32px;
+        font-weight: bold;
+        color: white;
+        text-align: center;
+      }
+    </style>
   </head>
   <body>
+    <!-- Logo y texto de marca (solo visible antes de que cargue React) -->
+    <img src="/React-Stay-In-Style/StayInStyle/src/assets/Imagenes/Stay_In_Style.png" alt="Logo Stay In Style" class="logo" />
+    <div class="brand-name">Stay In Style</div>
+
+    <!-- React App -->
     <div id="root"></div>
     <script type="module" src="/src/main.jsx"></script>
   </body>
