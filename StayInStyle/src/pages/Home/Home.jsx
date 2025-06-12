@@ -187,7 +187,7 @@ const Home = () => {
     Lleva Stay In Style contigo y compra desde tu celular de forma más rápida y cómoda.
   </p>
   <a
-    href="https://tusitio.com/app-release.apk"
+    href="https://drive.google.com/uc?export=download&id=1aqaWI91U4u_ESgBz7q4FHU_uEQZjQgAx"
     download
     style={{ textDecoration: 'none' }}
   >
