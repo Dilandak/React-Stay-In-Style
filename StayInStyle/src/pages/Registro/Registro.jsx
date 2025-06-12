@@ -1,8 +1,11 @@
 import React, { useState } from "react";
 import axios from "axios";
 import "./Registro.css"; // Asegúrate de que tu archivo CSS esté bien configurado
+import { useNavigate, Link } from "react-router-dom";
 
 const Registro = () => {
+  const navigate = useNavigate(); // ✅ Inicializar aquí
+
   // Estado para almacenar los datos del formulario
   const [formData, setFormData] = useState({
     nombre: "",
@@ -129,8 +132,8 @@ const handleSubmit = async (e) => {
 
         <div className="link_registro">
           <p>
-  ¿Ya tienes una cuenta creada? <Link to="/IniciarSesion">Inicia Sesión</Link>
-</p>
+      ¿Ya tienes una cuenta creada? <Link to="/IniciarSesion">Inicia Sesión</Link>
+        </p>
         </div>
       </div>
     </div>

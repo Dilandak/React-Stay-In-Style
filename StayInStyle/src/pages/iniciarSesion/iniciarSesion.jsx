@@ -1,6 +1,6 @@
 import React, { useState } from "react";
 import axios from "axios";
-import { useNavigate } from "react-router-dom";
+import { useNavigate, Link } from "react-router-dom";
 import "./IniciarSesion.css";
 
 const IniciarSesion = () => {
@@ -23,7 +23,7 @@ const IniciarSesion = () => {
 
   const handleSubmit = async (e) => {
     e.preventDefault();
-   
+
     if (!email || !password) {
       setMensaje("Por favor completa todos los campos");
       return;
@@ -139,8 +139,8 @@ const IniciarSesion = () => {
           )}
 
           <div className="auth-links">
-            <a href="/ForgotPassword">¿Olvidaste tu contraseña?</a>
-            <p>¿No tienes cuenta? <a href="/registro">Regístrate</a></p>
+            <Link to="/ForgotPassword">¿Olvidaste tu contraseña?</Link>
+            <p>¿No tienes cuenta? <Link to="/Registro">Regístrate</Link></p>
           </div>
         </div>
       </div>
