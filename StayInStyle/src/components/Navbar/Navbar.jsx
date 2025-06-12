@@ -50,10 +50,13 @@ const Navbar = () => {
   };
 
   const logoImg = (
-    <Link to="/" className="logo-link">
-      <img src={logo} alt="Logo" className="logo-image" />
-    </Link>
-  );
+  <Link to="/" className="logo-link" style={{ display: 'flex', alignItems: 'center', textDecoration: 'none' }}>
+    <img src={logo} alt="Logo" className="logo-image" style={{ height: '40px', marginRight: '10px' }} />
+    <span style={{ color: 'white', fontWeight: 'bold', fontSize: '20px', fontFamily: 'Arial, sans-serif' }}>
+      Stay In Style
+    </span>
+  </Link>
+);
 
   if (userData.isSuperAdmin || (userData.isLoggedIn && userData.rol === 1)) {
     return (
